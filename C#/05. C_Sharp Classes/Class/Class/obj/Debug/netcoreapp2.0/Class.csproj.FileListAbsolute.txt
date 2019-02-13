@@ -1,0 +1,11 @@
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\obj\Debug\netcoreapp2.0\Class.csprojAssemblyReference.cache
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\obj\Debug\netcoreapp2.0\Class.csproj.CoreCompileInputs.cache
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\obj\Debug\netcoreapp2.0\Class.AssemblyInfoInputs.cache
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\obj\Debug\netcoreapp2.0\Class.AssemblyInfo.cs
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\bin\Debug\netcoreapp2.0\Class.deps.json
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\bin\Debug\netcoreapp2.0\Class.runtimeconfig.json
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\bin\Debug\netcoreapp2.0\Class.runtimeconfig.dev.json
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\bin\Debug\netcoreapp2.0\Class.dll
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\bin\Debug\netcoreapp2.0\Class.pdb
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\obj\Debug\netcoreapp2.0\Class.dll
+D:\Internship\C#\05. C_Sharp Classes\Class\Class\obj\Debug\netcoreapp2.0\Class.pdb

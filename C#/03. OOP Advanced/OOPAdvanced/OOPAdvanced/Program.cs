@@ -18,7 +18,7 @@ namespace OOPAdvanced
     {
         void WriteMessage();
     }
-    class User:ILogin, IRegister, IMessage
+    abstract class User:ILogin, IRegister, IMessage
     {
         public int id { set; get; }
         public string name { set; get; }
@@ -42,7 +42,7 @@ namespace OOPAdvanced
         public void SetPrivileges() => Console.WriteLine("Set privileges");
         public override void WriteMessage()
         {
-            Console.WriteLine("Message from Admin")
+            Console.WriteLine("Message from Admin");
         }
     }
     class Moderator:User, IModerator
