@@ -1,0 +1,11 @@
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\bin\Debug\netcoreapp2.0\Exceptions.deps.json
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\bin\Debug\netcoreapp2.0\Exceptions.runtimeconfig.json
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\bin\Debug\netcoreapp2.0\Exceptions.runtimeconfig.dev.json
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\bin\Debug\netcoreapp2.0\Exceptions.dll
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\bin\Debug\netcoreapp2.0\Exceptions.pdb
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\obj\Debug\netcoreapp2.0\Exceptions.csprojAssemblyReference.cache
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\obj\Debug\netcoreapp2.0\Exceptions.csproj.CoreCompileInputs.cache
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\obj\Debug\netcoreapp2.0\Exceptions.AssemblyInfoInputs.cache
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\obj\Debug\netcoreapp2.0\Exceptions.AssemblyInfo.cs
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\obj\Debug\netcoreapp2.0\Exceptions.dll
+D:\Internship\C#\08. Exceptions\Exceptions\Exceptions\obj\Debug\netcoreapp2.0\Exceptions.pdb

@@ -1,0 +1,11 @@
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\bin\Debug\netcoreapp2.0\Angle.deps.json
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\bin\Debug\netcoreapp2.0\Angle.runtimeconfig.json
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\bin\Debug\netcoreapp2.0\Angle.runtimeconfig.dev.json
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\bin\Debug\netcoreapp2.0\Angle.dll
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\bin\Debug\netcoreapp2.0\Angle.pdb
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\obj\Debug\netcoreapp2.0\Angle.csprojAssemblyReference.cache
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\obj\Debug\netcoreapp2.0\Angle.csproj.CoreCompileInputs.cache
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\obj\Debug\netcoreapp2.0\Angle.AssemblyInfoInputs.cache
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\obj\Debug\netcoreapp2.0\Angle.AssemblyInfo.cs
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\obj\Debug\netcoreapp2.0\Angle.dll
+D:\Internship\C#\07. Interfaces, Overloading\Angle\Angle\obj\Debug\netcoreapp2.0\Angle.pdb

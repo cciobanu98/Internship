@@ -1,0 +1,11 @@
+D:\Internship\C#\06. Array, String\Array_String\Array_String\obj\Debug\netcoreapp2.0\Array_String.csprojAssemblyReference.cache
+D:\Internship\C#\06. Array, String\Array_String\Array_String\obj\Debug\netcoreapp2.0\Array_String.csproj.CoreCompileInputs.cache
+D:\Internship\C#\06. Array, String\Array_String\Array_String\obj\Debug\netcoreapp2.0\Array_String.AssemblyInfoInputs.cache
+D:\Internship\C#\06. Array, String\Array_String\Array_String\obj\Debug\netcoreapp2.0\Array_String.AssemblyInfo.cs
+D:\Internship\C#\06. Array, String\Array_String\Array_String\bin\Debug\netcoreapp2.0\Array_String.deps.json
+D:\Internship\C#\06. Array, String\Array_String\Array_String\bin\Debug\netcoreapp2.0\Array_String.runtimeconfig.json
+D:\Internship\C#\06. Array, String\Array_String\Array_String\bin\Debug\netcoreapp2.0\Array_String.runtimeconfig.dev.json
+D:\Internship\C#\06. Array, String\Array_String\Array_String\bin\Debug\netcoreapp2.0\Array_String.dll
+D:\Internship\C#\06. Array, String\Array_String\Array_String\bin\Debug\netcoreapp2.0\Array_String.pdb
+D:\Internship\C#\06. Array, String\Array_String\Array_String\obj\Debug\netcoreapp2.0\Array_String.dll
+D:\Internship\C#\06. Array, String\Array_String\Array_String\obj\Debug\netcoreapp2.0\Array_String.pdb

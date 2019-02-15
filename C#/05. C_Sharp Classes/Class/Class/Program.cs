@@ -9,10 +9,15 @@ interface IProduct
 class Base:IProduct
 {
     public const double PI = 3.14;
+    private static int year;
     public string Name { get; set; }
     private int id;
     private string pass = "def";
     protected string product;
+    static Base()
+    {
+        year = DateTime.Now.Year;
+    }
     public virtual string Product
     {
         get { return product; }
@@ -32,6 +37,7 @@ class Base:IProduct
                 pass = "Def123456789";
         }
     }
+   
     public int Id
     {
         get

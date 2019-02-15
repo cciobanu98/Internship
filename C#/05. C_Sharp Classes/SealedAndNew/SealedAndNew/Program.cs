@@ -9,7 +9,7 @@ class Base
 }
 class Kid:Base
 {
-    public  override void WriteMethod()
+    public  override sealed void WriteMethod()
     {
         Console.WriteLine("This is Kid");
         //base.WriteMethod();
@@ -50,10 +50,10 @@ namespace SealedAndNew
             //k2.WriteMethod();
             //Kid2  k22 = new Kid2();
             //k22.WriteMethod();
-            Base k222 = new Kid2();
+            Kid k222 = new Kid2();
             k222.WriteMethod();
-            Test t = new Test2();
-            t.WriteTest();
+           // Test t = new Test2();
+            //t.WriteTest();
             Console.ReadKey();
         }
     }
