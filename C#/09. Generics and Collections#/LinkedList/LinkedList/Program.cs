@@ -55,7 +55,7 @@ namespace LinkedList
             Item = default(T);
         }
     }
-    public class LinkedList<T>
+    public class LinkedList<T> : IEnumerable<T>
     {
         #region Filds and Prop
         public Node<T> Head { get; set; }
@@ -117,6 +117,17 @@ namespace LinkedList
             item2ref.Item = temp;
             return true;
         }
+        public bool Swap<T1>(int index1, int index2)
+        {
+            Node<T> item1ref = Search(index1);
+            Node<T> item2ref = Search(index2);
+            if (item1ref == null || item2ref == null)
+                return false;
+            T temp = item1ref.Item;
+            item1ref.Item = item2ref.Item;
+            item2ref.Item = temp;
+            return true;
+        }
         public bool Remove(T data)
         {
             if (Head.Item.Equals(data))
@@ -149,6 +160,21 @@ namespace LinkedList
                Console.WriteLine(head.Item);
                head = head.Next;
             }
+        }
+        public IEnumerator<T> GetEnumerator()
+        {
+            Node<T> head = Head;
+            while (head != null)
+            {
+                yield return head.Item;
+                head = head.Next;
+            }
+
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)this).GetEnumerator();
         }
         public T this[int index]
         {
@@ -237,6 +263,14 @@ namespace LinkedList
                list.Swap(0, 27);
                list.Print();
           }
+        static void TestInt2()
+        {
+            LinkedList<int> list = new LinkedList<int>();
+            for (int i = 0; i < 10; i++)
+                list.Add(i * 3);
+            list.Swap<int>(0, 27);
+            list.Print();
+        }
         static void Main(string[] args)
         {
                LinkedList<Person> lst = GetListofPerson();
@@ -245,6 +279,7 @@ namespace LinkedList
                //TestingInt();
                //TestingDictonary1(lst);
                //TestingDictonary2(lst);
+               //TestInt2();
 
             Console.ReadKey();
         }
