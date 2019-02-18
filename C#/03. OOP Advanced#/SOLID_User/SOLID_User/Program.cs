@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 
 namespace ClassExemple
 {
-     public class Logger
+     public interface IImportant
      {
-          void LoginUser(User u)
+          void ImportantMessage(string message);
+     }
+     public interface IDeleteMessage
+     {
+          void DeleteMessage(string message, User u);
+          void Advertisment(User u);
+     }
+   
+     public static class Logger
+     {
+          public static void LoginUser(User u)
           {
                Console.WriteLine($"User {u.Name} has been logged");
           }
-          void DeloginUser(User u)
+          public static void DeloginUser(User u)
           {
                Console.WriteLine($"User {u.Name} has been deloged");
           }
@@ -30,7 +40,7 @@ namespace ClassExemple
                {
                     numberOfUser = 1;
                }
-          } 
+          }
           public static DateTime TimeOfCreate { get; private set; }
           static User()
           {
@@ -56,16 +66,35 @@ namespace ClassExemple
                numberOfUser++;
           }
      }
-     public class Administartor:User
+     public class Administartor : User, IImportant, IDeleteMessage
      {
           public Administartor() : base()
           {
 
           }
-          public Administartor(string name):base(name)
+          public Administartor(string name) : base(name)
           {
 
           }
+
+          public void Advertisment(User u)
+          {
+               Console.WriteLine($"Administrator {this.Name} delete message from user {u.Name}");
+          }
+
+          public void DeleteMessage(string message, User u)
+          {
+               Console.WriteLine($"Message {message} has been delete");
+               Advertisment(u);
+          }
+
+          public void ImportantMessage(string message)
+          {
+               Console.WriteLine("".PadLeft(100));
+               Console.WriteLine($"Important Message from Administratot {message}");
+               Console.WriteLine("".PadLeft(100));
+          }
+
           public override void WriteMessage(string Message)
           {
                Console.ForegroundColor = ConsoleColor.Red;
@@ -73,16 +102,28 @@ namespace ClassExemple
                Console.ResetColor();
           }
      }
-     public class Moderator : User
+     public class Moderator : User, IDeleteMessage
      {
-          public Moderator():base()
+          public Moderator() : base()
           {
 
           }
-          public Moderator(string name):base(name)
+          public Moderator(string name) : base(name)
           {
 
           }
+
+          public void Advertisment(User u)
+          {
+               Console.WriteLine($"Moderator {this.Name} delete message from user {u.Name}");
+          }
+
+          public void DeleteMessage(string message, User u)
+          {
+               Console.WriteLine($"Message {message} has been delete");
+               Advertisment(u);
+          }
+
           public override void WriteMessage(string Message)
           {
                Console.ForegroundColor = ConsoleColor.Green;
@@ -92,11 +133,11 @@ namespace ClassExemple
      }
      public class SimplyUser : User
      {
-          public SimplyUser():base()
+          public SimplyUser() : base()
           {
 
           }
-          public SimplyUser(string name):base(name)
+          public SimplyUser(string name) : base(name)
           {
 
           }
@@ -111,14 +152,18 @@ namespace ClassExemple
      {
           static void Main(string[] args)
           {
-               List <User> lst = new List<User>();
+               List<User> lst = new List<User>();
                lst.Add(new Administartor("Cristian"));
                lst.Add(new Administartor("Angela"));
                lst.Add(new Moderator("Oleg"));
                lst.Add(new SimplyUser("Alexandru"));
                lst.Add(new SimplyUser("Marian"));
                foreach (User u in lst)
+               {
+                    Logger.LoginUser(u);
                     u.WriteMessage($"Message from: {u.GetType().Name} {u.Name} with Id: {u.Id}");
+                    Logger.DeloginUser(u);
+               }
                Console.WriteLine($"Number of user {User.NumberOfUser}");
                Console.WriteLine($"Date of create: {User.TimeOfCreate}");
                Console.ReadKey();
