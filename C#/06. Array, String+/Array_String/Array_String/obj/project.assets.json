@@ -670,11 +670,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Internship\\C#\\06. Array, String\\Array_String\\Array_String\\Array_String.csproj",
+      "projectUniqueName": "D:\\Internship\\C#\\06. Array, String+\\Array_String\\Array_String\\Array_String.csproj",
       "projectName": "Array_String",
-      "projectPath": "D:\\Internship\\C#\\06. Array, String\\Array_String\\Array_String\\Array_String.csproj",
+      "projectPath": "D:\\Internship\\C#\\06. Array, String+\\Array_String\\Array_String\\Array_String.csproj",
       "packagesPath": "C:\\Users\\cristian.ciobanu\\.nuget\\packages\\",
-      "outputPath": "D:\\Internship\\C#\\06. Array, String\\Array_String\\Array_String\\obj\\",
+      "outputPath": "D:\\Internship\\C#\\06. Array, String+\\Array_String\\Array_String\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

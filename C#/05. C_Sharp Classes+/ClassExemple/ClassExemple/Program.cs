@@ -6,19 +6,34 @@ using System.Threading.Tasks;
 
 namespace ClassExemple
 {
-     public class Logger
+    public interface Inter
+    {
+        void mess();
+    }
+    public static class Logger
      {
-          void LoginUser(User u)
+       
+          public static void LoginUser(User u)
           {
                Console.WriteLine($"User {u.Name} has been logged");
           }
-          void DeloginUser(User u)
+          public static void DeloginUser(User u)
           {
                Console.WriteLine($"User {u.Name} has been deloged");
           }
-     }
+
+        //public class Test : Iintef
+        //{
+        //    void Iintef.mess()
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
+
+    }
      public abstract class User
      {
+
           private static int numberOfUser = 1;
           public static int NumberOfUser
           {
@@ -117,8 +132,12 @@ namespace ClassExemple
                lst.Add(new Moderator("Oleg"));
                lst.Add(new SimplyUser("Alexandru"));
                lst.Add(new SimplyUser("Marian"));
-               foreach (User u in lst)
-                    u.WriteMessage($"Message from: {u.GetType().Name} {u.Name} with Id: {u.Id}");
+            foreach (User u in lst)
+            {
+                Logger.LoginUser(u);
+                u.WriteMessage($"Message from: {u.GetType().Name} {u.Name} with Id: {u.Id}");
+                Logger.DeloginUser(u);
+            }
                Console.WriteLine($"Number of user {User.NumberOfUser}");
                Console.WriteLine($"Date of create: {User.TimeOfCreate}");
                Console.ReadKey();
