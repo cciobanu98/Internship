@@ -6,12 +6,12 @@ public class Book : IComparable
     public string Authour { get; set; }
     public int Pages { get; set; }
 
-    public Book()
-    {
-        Name = null;
-        Authour = null;
-        Pages = 0;
-    }
+    //public Book()
+    //{
+    //    Name = null;
+    //    Authour = null;
+    //    Pages = 0;
+    //}
     public Book(string name, string authour, int pages)
     {
         Name = name;
@@ -37,15 +37,15 @@ public class Person
     public int? Age { get; set; }
     public TypeOfWork? Work { get; set; }
     public LinkedList<Book>Books { get; set; }
-    public Person()
-    {
-        Name = "";
-        SurName = "";
-        Id = null;
-        Work = null;
-        Books = null;
-        Age = null;
-    }
+    //public Person()
+    //{
+    //    Name = "";
+    //    SurName = "";
+    //    Id = null;
+    //    Work = null;
+    //    Books = null;
+    //    Age = null;
+    //}
     public Person(string name, string surName, TypeOfWork work, int age, LinkedList<Book> books)
     {
         Name = name;

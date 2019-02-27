@@ -107,12 +107,12 @@ namespace LinkedList
             var s = lst.GroupJoin(books,
                 person => person.SurName,
                 book => book.Authour,
-                (person, book) => new { Name = person.Name, SurName = person.SurName, Book = book }
+                (person, personBooks) => new { Name = person.Name, SurName = person.SurName, Books = personBooks }
                 );
             foreach (var item in s)
             {
                 Console.WriteLine($"{item.Name} {item.SurName} ");
-                foreach (var item2 in item.Book)
+                foreach (var item2 in item.Books)
                     Console.Write($"\t{item2}");
                 Console.WriteLine();
             }
@@ -147,8 +147,17 @@ namespace LinkedList
             LinkedList<Book> books = GetBooks();
             LinkedList<Person> lst = GetListofPerson(books);
             Console.Write(lst);
-           // GroupByMethod(books);
-            Console.WriteLine(books.Max());
+            //books.Fi
+            //books.First(book => book.Pages > 100);
+            //WhereMethod(lst);
+            // TakeMethod(lst);
+            // SelectMany(lst);
+            // JoinMethod(lst, books);
+           // GroupJoinMethod(lst, books);
+            // OrderByMethod(books);
+            // GroupByMethod(books);
+            //Console.WriteLine(books.Max());
+            //Console.WriteLine(lst.Max());
             Console.ReadKey();
         }
     }
