@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="WindowsBase" Version="4.6.1055" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="System.Windows.Forms.VisualStudio.15.0">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\System.Windows.Forms.VisualStudio.15.0.dll</HintPath>
     </Reference>

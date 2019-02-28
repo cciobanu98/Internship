@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Windows;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ClassExemple
 {
@@ -234,6 +233,7 @@ namespace ClassExemple
             lst.OnAdd -= deleg;
             lst.Add(new SimplyUser("Alexandru", logger));
             lst.Add(new SimplyUser("Marian", logger));
+            
             foreach (User u in lst)
             {
                 logger.LoginUser(u);

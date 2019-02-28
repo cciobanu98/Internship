@@ -4,28 +4,23 @@ using System.Security.Cryptography;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 namespace FileStreams
 {
-    class MyWathcer
+    class Sync
     {
         public struct DirectoryStruct
         {
             public Dictionary<string, string> dict;
             public DirectoryInfo dir;
-        }
-        private FileSystemWatcher wathcer_dir1;
-        private FileSystemWatcher watcher_dir2;
+        };
         public DirectoryStruct dir1;
         public DirectoryStruct dir2;
-        public MyWathcer(DirectoryInfo dir1, DirectoryInfo dir2)
+        public Sync(DirectoryInfo dir1, DirectoryInfo dir2)
         {
             this.dir1.dir = dir1;
             this.dir2.dir = dir2;
-            wathcer_dir1 = SetWatcher(dir1);
             this.dir1.dict = GetDictonary(dir1);
             this.dir2.dict = GetDictonary(dir2);
-            Syncronize(this.dir1, this.dir2);
         }
         private static byte[] ReadFully(Stream input)
         {
@@ -66,10 +61,7 @@ namespace FileStreams
                 byte[] pathBytes = Encoding.UTF8.GetBytes(relativePath.ToLower());
                 md5.TransformBlock(pathBytes, 0, pathBytes.Length, pathBytes, 0);
                 byte[] contentBytes = File.ReadAllBytes(file);
-                //if (i == files.Count - 1)
-                    //md5.TransformFinalBlock(contentBytes, 0, contentBytes.Length);
-                //else
-                    md5.TransformBlock(contentBytes, 0, contentBytes.Length, contentBytes, 0);
+                md5.TransformBlock(contentBytes, 0, contentBytes.Length, contentBytes, 0);
             }
             byte[] pathBytesName = Encoding.UTF8.GetBytes(Path.GetFileName(d.FullName));
             md5.TransformFinalBlock(pathBytesName, 0, pathBytesName.Length);
@@ -85,24 +77,6 @@ namespace FileStreams
             foreach (var d in dirs)
                 dict.Add(getMD5ofDir(d), d.FullName);
             return dict;
-        }
-        private FileSystemWatcher SetWatcher(DirectoryInfo dir)
-        {
-            FileSystemWatcher watcher = new FileSystemWatcher();
-            watcher.Path = dir.FullName;
-            watcher.NotifyFilter = NotifyFilters.Size |
-                                    NotifyFilters.LastWrite |
-                                    NotifyFilters.LastAccess |
-                                    NotifyFilters.CreationTime |
-                                    NotifyFilters.FileName |
-                                    NotifyFilters.DirectoryName;
-            watcher.Filter = "*.*";
-            watcher.IncludeSubdirectories = true;
-            watcher.Changed += OnChanged;
-            watcher.Renamed += OnRenamed;
-            watcher.Created += OnCreated;
-            watcher.Deleted += OnDeleted;
-            return watcher;
         }
         private void CopyDirectorie(string from, string to)
         {
@@ -154,50 +128,61 @@ namespace FileStreams
             RemoveFilesAndDirectory(dir1, dir2);
             AddFilesAndDirectory(dir1, dir2);
         }
-        private  void OnChanged(object o, FileSystemEventArgs e)
+    }
+    class MyWatcher
+    {
+        private FileSystemWatcher watcher;
+        public DirectoryInfo Dir1 { get; private set; }
+        public DirectoryInfo Dir2 { get; private set; }
+        public MyWatcher(DirectoryInfo dir1, DirectoryInfo dir2)
+        {
+            Dir1 = dir1;
+            Dir2 = dir2;
+            watcher = SetWatcher(Dir1);
+        }
+        private FileSystemWatcher SetWatcher(DirectoryInfo dir)
+        {
+            FileSystemWatcher watcher = new FileSystemWatcher();
+            watcher.Path = dir.FullName;
+            watcher.NotifyFilter = NotifyFilters.Size |
+                                    NotifyFilters.LastWrite |
+                                    NotifyFilters.LastAccess |
+                                    NotifyFilters.CreationTime |
+                                    NotifyFilters.FileName |
+                                    NotifyFilters.DirectoryName;
+            watcher.Filter = "*.*";
+            watcher.IncludeSubdirectories = true;
+            watcher.Changed += OnChanged;
+            watcher.Renamed += OnRenamed;
+            watcher.Created += OnCreated;
+            watcher.Deleted += OnDeleted;
+            return watcher;
+        }
+        private void OnChanged(object o, FileSystemEventArgs e)
         {
             Console.WriteLine(e.FullPath);
-            var myKey = dir1.dict.FirstOrDefault(x => x.Value == e.FullPath).Key;
-           
         }
-        private  void OnCreated(object o, FileSystemEventArgs e)
+        private void OnRenamed(object o, FileSystemEventArgs e)
+        {
+            string str = e.FullPath.Replace(Dir1.FullName, Dir2.FullName);
+            File.Copy(e.FullPath, str);
+        }
+        private void OnCreated(object o, FileSystemEventArgs e)
+        {
+            string str = e.FullPath.Replace(Dir1.FullName, Dir2.FullName);
+            File.Copy(e.FullPath, str);
+        }
+        private void OnDeleted(object o, FileSystemEventArgs e)
         {
             Console.WriteLine(e.FullPath);
-            FileAttributes attr = File.GetAttributes(e.FullPath);
-            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                dir1.dict.Add(getMD5ofDir(new DirectoryInfo(e.FullPath)), e.FullPath);
-            else
-                dir1.dict.Add(getMD5ofFile(new FileInfo(e.FullPath)), e.FullPath);
-            Syncronize(dir1, dir2);
-        }
-        private  void OnDeleted(object o, FileSystemEventArgs e)
-        {
-            //Console.WriteLine(e.FullPath);
-            var myKey = dir1.dict.FirstOrDefault(x => x.Value == e.FullPath).Key;
-            if (dir2.dict.ContainsKey(myKey))
-            {
-                string path = dir2.dict[myKey];
-                FileAttributes attr = File.GetAttributes(path);
-                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
-                    Directory.Delete(path, true);
-                else
-                    File.Delete(path);
-                dir2.dict.Remove(myKey);
-            }
-            // Syncronize(dir1, dir2);
-        }
-        private  void OnRenamed(object o, FileSystemEventArgs e)
-        {
-            Console.WriteLine(e.FullPath);
-            // Syncronize(dir1, dir2);
         }
         public void Run()
         {
-            wathcer_dir1.EnableRaisingEvents = true;
+            watcher.EnableRaisingEvents = true;
         }
         public void Stop()
         {
-            wathcer_dir1.EnableRaisingEvents = false;
+            watcher.EnableRaisingEvents = false;
         }
     }
     class Program
@@ -208,12 +193,13 @@ namespace FileStreams
             {
                 DirectoryInfo dir1 = new DirectoryInfo("../../../../../Testing1");
                 DirectoryInfo dir2 = new DirectoryInfo("../../../../../Testing2");
-                //Console.WriteLine(dir1.FullName);
-                MyWathcer watcher = new MyWathcer(dir1, dir2);
-                 watcher.Run();
-                 while (Console.Read() != 'q') ;
-                 watcher.Stop();
-               // watcher.Syncronize(watcher.dir1, watcher.dir2);
+                Sync sync = new Sync(dir1, dir2);
+                sync.Syncronize(sync.dir1, sync.dir2);
+                MyWatcher watcher = new MyWatcher(dir1, dir2);
+                watcher.Run();
+                while (Console.Read() != 'q');
+                watcher.Stop();
+
             }
             catch (Exception e)
             {

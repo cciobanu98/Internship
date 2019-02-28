@@ -25,7 +25,7 @@ namespace Angle
         }
     }
     #endregion
-    public class AngleType : IComparable, IEnumerable, ICloneable
+    public class AngleType : IComparable, IEnumerable, ICloneable, IComparer
     {
         #region Field
         private int angle;
@@ -242,6 +242,11 @@ namespace Angle
         public object Clone()
         {
             return (AngleType)this.MemberwiseClone();
+        }
+
+        public int Compare(object x, object y)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
