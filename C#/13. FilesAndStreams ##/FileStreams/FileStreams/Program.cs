@@ -158,23 +158,93 @@ namespace FileStreams
             watcher.Deleted += OnDeleted;
             return watcher;
         }
+        private void CopyDirectorie(string from, string to)
+        {
+            foreach (string dirPath in Directory.GetDirectories(from, "*", SearchOption.AllDirectories))
+                Directory.CreateDirectory(dirPath.Replace(from, to));
+            foreach (string newPath in Directory.GetFiles(from, ".", SearchOption.AllDirectories))
+                File.Copy(newPath, newPath.Replace(from, to), true);
+        }
+        static public void CopyFolder(string sourceFolder, string destFolder)
+        {
+            if (!Directory.Exists(destFolder))
+                Directory.CreateDirectory(destFolder);
+            string[] files = Directory.GetFiles(sourceFolder);
+            foreach (string file in files)
+            {
+                string name = Path.GetFileName(file);
+                string dest = Path.Combine(destFolder, name);
+                File.Copy(file, dest);
+            }
+            string[] folders = Directory.GetDirectories(sourceFolder);
+            foreach (string folder in folders)
+            {
+                string name = Path.GetFileName(folder);
+                string dest = Path.Combine(destFolder, name);
+                CopyFolder(folder, dest);
+            }
+        }
+        private bool is_dir(string path)
+        {
+            FileAttributes attr = File.GetAttributes(path);
+            if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                return true;
+            return false;
+        }
         private void OnChanged(object o, FileSystemEventArgs e)
         {
-            Console.WriteLine(e.FullPath);
+            string str = e.FullPath.Replace(Dir1.FullName, Dir2.FullName);
+            if (Directory.Exists(str) || File.Exists(str))
+            {
+                if (is_dir(str))
+                {
+                    //CopyFolder(e.FullPath, str);
+                   // Directory.Delete(str, true);
+                }
+                else
+                {
+                    File.Delete(str);
+                    File.Copy(e.FullPath, str);
+                }
+            }
         }
-        private void OnRenamed(object o, FileSystemEventArgs e)
+        private void OnRenamed(object o, RenamedEventArgs e)
         {
             string str = e.FullPath.Replace(Dir1.FullName, Dir2.FullName);
-            File.Copy(e.FullPath, str);
+            string old = e.OldFullPath.Replace(Dir1.FullName, Dir2.FullName);
+            // if (Directory.Exists(str))
+
+            //if (is_dir(old))
+            // {
+            // Directory.Delete(old, true);
+            // Console.WriteLine(str);
+            //CopyDirectorie(e.FullPath, str);
+            // }
+            // else
+            // {
+            if (File.Exists(old))
+            {
+                File.Delete(old);
+                File.Copy(e.FullPath, str);
+            }
+               // }
+            
         }
         private void OnCreated(object o, FileSystemEventArgs e)
         {
             string str = e.FullPath.Replace(Dir1.FullName, Dir2.FullName);
-            File.Copy(e.FullPath, str);
+            if (is_dir(e.FullPath))
+                Directory.CreateDirectory(str);
+            else
+                File.Copy(e.FullPath, str);
         }
         private void OnDeleted(object o, FileSystemEventArgs e)
         {
-            Console.WriteLine(e.FullPath);
+            string str = e.FullPath.Replace(Dir1.FullName, Dir2.FullName);
+            if (is_dir(str))
+                Directory.Delete(str, true);
+            else
+                File.Delete(str);
         }
         public void Run()
         {
@@ -203,7 +273,7 @@ namespace FileStreams
             }
             catch (Exception e)
             {
-               Console.WriteLine(e.Message);
+                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
             }
             finally
